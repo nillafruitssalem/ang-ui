@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FD6A02;color: white;">
+  <a class="navbar-brand">
+    <img src="../../assets/img/Logo_Png1.png" alt="Logo" class="rounded-circle"
+      style="width:55px;background-color: white;">
+  </a>
+  <span class="navbar-brand" style="color:white;">Nilla Fruits</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- <li class="nav-item active">
+          <a class="nav-link" routerLink="userhome">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="userorder">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="userhistory">Orderhistory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="usercomplaint">For Complaint</a>
+        </li> -->
+    </ul>
+
+    <form class="form-inline my-4 my-lg-0">
+      <input class="form-control mr-sm-4" (keyup)="applyFilter($event)" type="search" placeholder="Filter by Name"
+        aria-label="Search">
+      <!-- <button mat-flat-button color="primary" class="my-4 my-sm-0" type="submit">Search</button>&nbsp;&nbsp;&nbsp; -->
+      <button mat-flat-button color="primary" class="my-4 my-sm-0" routerLink="login"
+        type="button">Login</button>&nbsp;&nbsp;&nbsp;
+      <button mat-flat-button color="primary" class="my-4 my-sm-0" routerLink="login" type="button">Singup</button>
+    </form>
+  </div>
+</nav>
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center" *ngIf="myarray.length == 0">No data provided by nillafruits</div>
+    <!-- *ngFor="let user of this.dataSource.filteredData   -->
+    <!-- <div class="col-md-3" *ngFor="let i of myarray;"> -->
+    <div class="col-md-3" *ngFor="let i of this.dataSource.filteredData;">
+      <mat-card class="example-card" routerLink="login">
+        <mat-card-header>          
+          <mat-card-title>{{i.productname}}</mat-card-title>
+          <mat-card-subtitle style="color:#ff4081">In Stock {{i.productqty}}&nbsp;{{i.productunits}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image  style="width:100%;" height="200" alt="{{i.productname}}" class="img-rounded"
+          src="{{i.productimage}}">
+        <mat-card-content class="text-center"><br>
+          <p><span style="color: red;">Rs:<span
+                style="color: green;"><b>{{i.productrate.$numberDecimal}}</b></span></span></p>
+        </mat-card-content>
+      </mat-card><br>
+    </div>
+  </div>
+</div>

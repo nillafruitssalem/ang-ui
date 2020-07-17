@@ -1,0 +1,179 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+
+            <mat-form-field>
+                <mat-label>order by date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="addEvent('change', $event)">
+                <!-- <input matInput [matDatepicker]="picker"  (dateInput)="addEvent('input', $event)"
+                    (dateChange)="addEvent('change', $event)"> -->
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter2($event)" placeholder="Name/Quantity/Units">
+            </mat-form-field>
+        </div>
+        <div class="col-sm-12">
+            <div class="text-center">
+                <mat-label style="color: red;">order's by user<small style="color: green;"> * By default loads today
+                        order</small></mat-label><br>
+                <button mat-stroked-button color="primary" (click)="starttoday()">Start Today</button>
+                &nbsp;&nbsp;&nbsp;
+                <button mat-stroked-button color="primary" (click)="stoptoday()">Stop Today</button> <br>
+
+            </div>
+            <div class="table-responsive  example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource2" class="table table-hover mat-elevation-z8">
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UserId">
+                        <th mat-header-cell *matHeaderCellDef> UserId </th>
+                        <td mat-cell *matCellDef="let element"> {{element.userid}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="View">
+                        <th mat-header-cell *matHeaderCellDef> View </th>
+                        <td mat-cell *matCellDef="let element">
+                            <!-- {{element.userid}} -->
+                            <mat-icon (click)="vieworder(element)" color="accent" matTooltip="View Order"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                visibility
+                            </mat-icon>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UserName">
+                        <th mat-header-cell *matHeaderCellDef> UserName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Email">
+                        <th mat-header-cell *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.emailid}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Contact">
+                        <th mat-header-cell *matHeaderCellDef> Contact </th>
+                        <td mat-cell *matCellDef="let element"> {{element.phonenumber}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Onwards">
+                        <th mat-header-cell *matHeaderCellDef> Onwards </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.createdon | date :'short' }}
+                            <!-- {{element.createdon }} -->
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> <b>Actions</b> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon class="material-icons" color="accent" matTooltip="Confrom"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                done_all
+                            </mat-icon>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2;sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                </table>
+                <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <div class="text-center">
+                <mat-label style="color: red;">users order's product</mat-label>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Name/Quantity/Units">
+            </mat-form-field>
+            <div class="table-responsive  example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" class="table table-hover mat-elevation-z8">
+
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef> select </th>
+                        <td mat-cell *matCellDef="let element;let i = index;">
+                            <mat-checkbox [checked]="element.isChecked" (change)="onCheckboxChecked($event, element)">
+
+                            </mat-checkbox>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productimage">
+                        <th mat-header-cell *matHeaderCellDef> Picture </th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <img [src]="element.orderproductimage" class="img-rounded"
+                                alt="{{element.orderproductimage}}" width="50" height="50" />
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productname">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductname}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productqty">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductqty}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productunits">
+                        <th mat-header-cell *matHeaderCellDef> Units </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductunits}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productrate">
+                        <th mat-header-cell *matHeaderCellDef> Rate </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductrate.$numberDecimal}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> <b>Actions</b> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon class="material-icons" color="accent" matTooltip="Confrom"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                done_all
+                            </mat-icon>
+                        </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="createdon">
+                        <th mat-header-cell *matHeaderCellDef>Created On </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.orderedon }} </td>
+                        <!-- {{element.createdon | date :'short' }} </td> -->
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <button mat-button color="primary" (click)="prceedorder();">submit</button>
+
+                <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+            </div>
+        </div>
+    </div>
+</div>

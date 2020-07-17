@@ -1,0 +1,192 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-tab-group>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon" style="color: green;">list</mat-icon>
+                        Order Requested
+                    </ng-template><br>
+                    <div class="text-center">
+                        <mat-label style="color: green;">Confirmating Your Order Request</mat-label>
+                    </div>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Name">
+                    </mat-form-field>
+                    <div class="table-responsive  example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" class="table table-hover mat-elevation-z8">
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productimage">
+                                <th mat-header-cell *matHeaderCellDef> Picture </th>
+                                <td mat-cell *matCellDef="let element">
+
+                                    <img [src]="element.orderproductimage" class="img-rounded"
+                                        alt="{{element.orderproductimage}}" width="50" height="50" />
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productname">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductname}} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productqty">
+                                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductqty}} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productunits">
+                                <th mat-header-cell *matHeaderCellDef> Units </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductunits}} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productrate">
+                                <th mat-header-cell *matHeaderCellDef> Rate </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderproductrate.$numberDecimal | currency:'INR'}}
+                                </td>
+                                <!-- <td mat-footer-cell *matFooterCellDef> {{ totalcost | currency}} </td> -->
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="order status">
+                                <th mat-header-cell *matHeaderCellDef> <b>Order Status</b> </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <!-- <mat-icon class="material-icons" style="color: green;" matTooltip="Waiting For Confirmation"
+                                            aria-label="Button that displays a tooltip when focused or hovered over">
+                                            more_horiz
+                                        </mat-icon> -->
+                                    <img src="../../assets/img/conforming.gif" class="img-rounded" width="80"
+                                        height="50" matTooltip="Waiting For Confirmation"
+                                        aria-label="Button that displays a tooltip when focused or hovered over" />
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="orderid">
+                                <th mat-header-cell *matHeaderCellDef>Order Id </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderid }} </td>
+                                <td mat-footer-cell *matFooterCellDef> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="orderon">
+                                <th mat-header-cell *matHeaderCellDef>Order On </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderedon }} </td>
+                                <!-- {{element.orderedon | date :'short' }} </td> -->
+                                <td mat-footer-cell *matFooterCellDef>Grand Total </td>
+
+                            </ng-container>
+
+                            <ng-container matColumnDef="sub total">
+                                <th mat-header-cell *matHeaderCellDef>Sub Total</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderproductrate.$numberDecimal *  element.orderproductqty | currency:'INR'}}
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> {{totalcost | currency:'INR'}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                        </table>
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon" style="color: red;">history</mat-icon>
+                        Ordered History
+                    </ng-template>
+                    <br>
+                    <div class="text-center">
+                        <mat-label style="color: red;">Your Order History</mat-label>
+                    </div>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter2($event)" placeholder="Name">
+                    </mat-form-field>
+                    <div class="table-responsive  example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource2" class="table table-hover mat-elevation-z8">
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productimage">
+                                <th mat-header-cell *matHeaderCellDef> Picture </th>
+                                <td mat-cell *matCellDef="let element">
+
+                                    <img [src]="element.orderproductimage" class="img-rounded"
+                                        alt="{{element.orderproductimage}}" width="50" height="50" />
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productname">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductname}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productqty">
+                                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductqty}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productunits">
+                                <th mat-header-cell *matHeaderCellDef> Units </th>
+                                <td mat-cell *matCellDef="let element"> {{element.orderproductunits}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productrate">
+                                <th mat-header-cell *matHeaderCellDef> Rate </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderproductrate.$numberDecimal | currency:'INR' }}
+                                </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="order status">
+                                <th mat-header-cell *matHeaderCellDef> <b>Order Status</b> </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <mat-icon class="example-tab-icon" style="color: green;">thumb_up</mat-icon>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="orderon">
+                                <th mat-header-cell *matHeaderCellDef>Order On </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderedon }} </td>
+                                <!-- {{element.orderedon | date :'short' }} </td> -->
+                            </ng-container>
+
+                            <ng-container matColumnDef="sub total">
+                                <th mat-header-cell *matHeaderCellDef>Sub Total</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.orderproductrate.$numberDecimal *  element.orderproductqty | currency:'INR'}}
+                                </td>
+
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns2;sticky: true;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                        </table>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

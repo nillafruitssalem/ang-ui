@@ -1,0 +1,147 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">            
+            <!-- <div class="col-sm-6" *ngIf="!api.usermenu">             -->
+            <mat-tab-group (selectedTabChange)="mytabselection($event);">
+                <mat-tab label="Login" >
+                    <mat-card>
+                        <mat-card-title>Login</mat-card-title>
+                        <mat-card-content>
+                            <form class="example-form" autocomplete="on" #f="ngForm" [formGroup]="firstFormGroup">
+                                <p>
+                                    <mat-form-field>
+                                        <input type="text" matInput placeholder="Email Id"  formControlName="emailid"
+                                            required>
+                                    </mat-form-field>
+                                </p>
+
+                                <p>
+                                    <mat-form-field>
+                                        <input type="password" matInput placeholder="Password"
+                                            formControlName="password" required>
+                                    </mat-form-field>
+                                </p>
+
+                                <div class="form-inline button">
+                                    <u><a class="mat-icon2" href="" data-toggle="modal" data-target="#myModal">Reset Password</a></u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" (click)="login();" mat-raised-button color="primary">Login</button>
+                                </div>
+
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+                <mat-tab label="Signup" >
+                    <mat-card>
+                        <mat-card-title>Signup</mat-card-title>
+                        <mat-card-content>
+
+                            <form class="example-form" autocomplete="off" #G="ngForm" [formGroup]="secondFormGroup">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>UserName</mat-label>
+                                    <input matInput placeholder="UserName" required formControlName="username">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput placeholder="password" required formControlName="password">
+                                </mat-form-field>
+
+                                 <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="EmailId" required formControlName="email">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Contact No</mat-label>
+                                    <input matInput placeholder="Contact No" required formControlName="contactno">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Location</mat-label>
+                                    <input matInput placeholder="location" required formControlName="location">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput placeholder="Address" required formControlName="address"></textarea>
+                                  </mat-form-field>
+
+                                <div class="button">
+                                    <button type="button" (click)="signup();" mat-raised-button color="primary">Signup</button>                                    
+                                </div>
+
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+
+                </mat-tab>
+
+            </mat-tab-group>
+        </div>
+        <div class="col-sm-3">            
+             <!-- <div *ngFor="let i of test"> -->
+                <!-- <p>{{i.name}}:{{i.description | mysentencecapitalize}}<p> -->
+               <!-- <p>{{i.name}}:{{captilizationsentance2(i.description)}}<p> --> 
+
+                    <!-- angular-titlecase -->
+        <!-- </div>  -->
+    </div>
+    <div class="container">       
+      
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Reset Your Password</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">                
+                <form class="example-form" autocomplete="off" #g="ngForm" [formGroup]="resetFormGroup">
+                    <p>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Email Id"  formControlName="resetemailid"
+                                required>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field>
+                            <input type="password" matInput placeholder="Password"
+                                formControlName="resetpassword" required>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Phonenumber"
+                                formControlName="resetphonenumber" required>
+                        </mat-form-field>
+                    </p>
+
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                 (click)="passwordreset();" mat-raised-button 
+                >Reset</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+</div>
+<!-- $2b$14$cWAqMegev6O/lETPNJ0qTeD7EFIN12Q1wfAA2sdYgktsmye6Q8yc6 -->
+
+<!-- https://www.youtube.com/watch?v=8IEI-7fj2j4 -->

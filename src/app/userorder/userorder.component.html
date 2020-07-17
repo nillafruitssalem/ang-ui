@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="card-header">
+            Cart Details
+        </div>
+
+        <div class="col-sm-12">
+            <mat-form-field class="example-full-width">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Name">
+            </mat-form-field>
+            <div class="table-responsive  example-container mat-elevation-z8">
+                <!-- <p *ngIf="dataSource  == 0"> Nor order found</p> -->
+                <table mat-table [dataSource]="dataSource" class="table table-hover mat-elevation-z8">
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productimage">
+                        <th mat-header-cell *matHeaderCellDef> Picture </th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <img [src]="element.orderproductimage" class="img-rounded"
+                                alt="{{element.orderproductimage}}" width="50" height="50" />
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productname">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductname}} </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productqty">
+                        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductqty}} </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="productunits">
+                        <th mat-header-cell *matHeaderCellDef> Units </th>
+                        <td mat-cell *matCellDef="let element"> {{element.orderproductunits}} </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="productrate">
+                        <th mat-header-cell *matHeaderCellDef> Rate </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.orderproductrate.$numberDecimal | currency:'INR'}} </td>                        
+                        <td mat-footer-cell *matFooterCellDef>Grand Total </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subtotal">
+                        <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.orderproductrate.$numberDecimal * element.orderproductqty | currency:'INR'}} </td>
+                        <td mat-footer-cell *matFooterCellDef> {{totalcost | currency:'INR'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="remove">
+                        <th mat-header-cell *matHeaderCellDef> <b>Remove</b> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-raised-button color="warn" (click)="cancelorder(element)" matTooltip="Cancel"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                <mat-icon class="material-icons">
+                                    delete
+                                </mat-icon>Delete
+                            </button>
+
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="proceed">
+                        <th mat-header-cell *matHeaderCellDef> <b>Proceed</b> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-raised-button color="accent" (click)="conformorder(element)"
+                                matTooltip="Place order"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                <mat-icon class="material-icons">
+                                    grading
+                                </mat-icon>Order
+                            </button>
+
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="orderon">
+                        <th mat-header-cell *matHeaderCellDef>Order On </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.orderedon }} </td>
+                        <!-- {{element.orderedon | date :'short' }} </td> -->
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+                </table>
+                <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+            </div>
+        </div>
+    </div>
+</div>

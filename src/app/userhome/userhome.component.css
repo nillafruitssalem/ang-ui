@@ -1,0 +1,146 @@
+.example-card {
+    max-width: 400px;
+    /* max-height: 100px; */
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.example {
+  -ms-overflow-style: none;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+#content {
+  padding: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.spacer-light {
+  margin: 0 10px;
+}
+
+.mat-toolbar.mat-primary {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+span a, span a:hover {
+  text-decoration: none;
+  color:rgba(255,255,255,.87);
+}
+
+mat-icon {
+  margin-right: 0px!important;
+}
+
+.menu-link a, .menu-link a:hover {
+  font-size: 14px;
+  text-decoration: none;
+  color:rgba(255,255,255,.87);
+  margin: 0 10px;
+}
+
+a, a:hover { 
+  text-decoration: none;
+  color:rgba(0,0,0,.87);
+}
+
+.mat-icon {
+  text-decoration: none;
+  color:rgba(255,255,255,.87);
+}
+
+.login, .logout, .profile, .messages, .settings, .home, .about, .contact, .misc, .signup{
+  color: #333;
+} 
+
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  width: 180px;
+  z-index: 100;
+}
+
+.menu-link button, .menu-link a:hover {
+  width: 100%;
+  height: 48px;
+  font-size: 14px;
+  line-height: 48px;
+  padding: 0 16px;
+  text-decoration: none;
+  text-align: left;
+}
+
+span {
+  margin-left: 15px;
+}
+
+img {
+  margin: 15px 15px 0;
+  max-width: 150px;
+  max-height: 180px;
+}
+
+section {
+  display: table;
+  margin: 8px;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+}
+
+.example-button-row button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <mat-label style="color: red;">Select Users to Send Offer Mail</mat-label>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="UserName/Location/PhoneNumber">
+            </mat-form-field>
+            <div class="table-responsive  example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" class="table table-hover mat-elevation-z8">
+
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef> select </th>
+                        <td mat-cell *matCellDef="let element;let i = index;">
+                            <mat-checkbox [checked]="element.isChecked" (change)="onCheckboxChecked($event, element)">
+
+                            </mat-checkbox>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}}. </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Username">
+                        <th mat-header-cell *matHeaderCellDef> UserName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="Location">
+                        <th mat-header-cell *matHeaderCellDef> Location </th>
+                        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="PhoneNumber">
+                        <th mat-header-cell *matHeaderCellDef> PhoneNumber </th>
+                        <td mat-cell *matCellDef="let element"> {{element.phonenumber}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmailId">
+                        <th mat-header-cell *matHeaderCellDef> Email Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.emailid}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Address">
+                        <th mat-header-cell *matHeaderCellDef> Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="createdon">
+                        <th mat-header-cell *matHeaderCellDef> ON Wards </th>
+                        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <br>
+            <br>
+            <br>
+            <form class="example-form" autocomplete="off" #f="ngForm" [formGroup]="firstFormGroup">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="subject" id="compose-subject"
+                        placeholder="Subject" required />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="compose-message" formControlName="message" placeholder="Message"
+                        rows="10" required></textarea>
+                </div>
+                <div class="form-inline">
+                    <button type="submit" id="send-button" class="btn btn-primary" (click)="sendmail();">Send</button>
+                </div>
+            </form>
+        </div>
+        <br><br><br><br>
+    </div>
+</div>

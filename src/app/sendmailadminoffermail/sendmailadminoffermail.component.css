@@ -1,0 +1,40 @@
+
+  .example-events {
+    height: 200px;
+    border: 1px solid #555;
+    overflow: auto;
+  }
+
+  /* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.example-container {
+  height: 270px;
+  overflow: auto;
+}
+
+
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}

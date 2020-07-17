@@ -1,0 +1,40 @@
+<div class="text-center">
+    <p>Send complaint mail to Nilla Fruits</p><small style="color: blue;">Remember to keep complaint respectful</small>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="example-form" autocomplete="off" #f="ngForm" [formGroup]="firstFormGroup">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="subject" id="compose-subject"
+                            placeholder="Subject" required />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="compose-message" formControlName="message"
+                            placeholder="Message" rows="10" required></textarea>
+                    </div>
+                    <div class="form-inline">
+                        <button type="button" class="btn btn-primary"
+                            (click)="clear();">Close</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" id="send-button" class="btn btn-primary"
+                            (click)="sendcomplaint();">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <p>CONTACT US
+                        <span style="color: green;" aria-hidden="false" aria-label="Example home icon" class="material-icons">
+                            thumb_up
+                        </span>
+                    </p>
+                    <p>9943835254
+                    <p>
+                    <p>8610585202</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

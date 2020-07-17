@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" *ngFor="let i of myarray">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                    <mat-card-title>{{i.productname}}</mat-card-title>
+                    <mat-card-subtitle>Avaliable {{i.productqty}}&nbsp;{{i.productunits}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image width="80" height="100" alt="{{i.productname}}" class="img-rounded"
+                    src="{{i.productimage}}">
+                <mat-card-content class="text-center"><br>
+                    <p><span style="color: red;">Rs:<span
+                                style="color: green;"><b>{{i.productrate.$numberDecimal}}</b></span></span></p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="order(i)">
+                        <mat-icon class="material-icons"> shopping_cart</mat-icon>
+                        AddTo Cart
+                    </button>
+                </mat-card-actions>
+            </mat-card><br>
+        </div>
+    </div>
+</div>

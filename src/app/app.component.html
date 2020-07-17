@@ -1,0 +1,9 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>  
+<app-userdashboard *ngIf="api.usermenu"></app-userdashboard>
+<app-admindashboard *ngIf="api.adminmenu"></app-admindashboard>
+<div class="alert alert-info" *ngIf="api.usermenu">
+    <strong>Information</strong> Purchase above 5 kg of any combination for free delivery.
+</div>
+<router-outlet></router-outlet>
