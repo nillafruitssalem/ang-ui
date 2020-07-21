@@ -48,45 +48,57 @@ export class ApiService {
     }
   }
 
-  // all users
+  // all users dc done
   allusers() {
     return new Promise((resolve, reject) => {
       this.http.get(this.baseurl + "/allusers", { headers: this.headers_object }).subscribe(res => {
-        resolve(res);
+        this.decrypthash(res).then(async result => {
+          resolve(result);
+        })
       }, err => {
         resolve(err);
       })
     })
   }
-  // specific users
+  // specific users dc done
   oneusers(userid) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.baseurl + "/allusers/" + userid, { headers: this.headers_object }).subscribe(res => {
-        resolve(res);
-      }, err => {
-        resolve(err);
+      this.encrypthash(userid).then(async hash => {
+        this.http.get(this.baseurl + "/allusers/" + hash, { headers: this.headers_object }).subscribe(res => {
+          this.decrypthash(res).then(async result => {
+            resolve(result);
+          })
+        }, err => {
+          resolve(err);
+        })
       })
     })
   }
 
-  // reset password
+  // reset password dc done
   allusersresetpassword(payload) {
     return new Promise((resolve, reject) => {
-      this.http.put(this.baseurl + "/resetpassword", payload).subscribe(res => {
-        resolve(res);
-      }, err => {
-        resolve(err);
+      this.encrypthash(payload).then(async hash => {
+        this.http.put(this.baseurl + "/resetpassword", await hash).subscribe(res => {
+          resolve(res);
+        }, err => {
+          resolve(err);
+        })
       })
     })
   }
 
-  // login
+  // login dc done
   login(data) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.baseurl + "/login", data).subscribe(res => {
-        resolve(res);
-      }, err => {
-        resolve(err);
+      this.encrypthash(data).then(async hash => {
+        this.http.post(this.baseurl + "/login", hash).subscribe(res => {
+          this.decrypthash(res).then(async result => {
+            resolve(result);
+          })
+        }, err => {
+          resolve(err);
+        })
       })
     })
 
@@ -106,7 +118,7 @@ export class ApiService {
       resolve(JSON.parse(aes256.decrypt(ENKEY, data)));
     })
   }
-  // signup
+  // signup dc done
   signup(data) {
     return new Promise((resolve, reject) => {
       this.encrypthash(data).then(async hash => {
@@ -119,11 +131,13 @@ export class ApiService {
       })
     })
   }
-  // all products
+  // all products dc done
   allproducts() {
     return new Promise((resolve, reject) => {
       this.http.get(this.baseurl + "/allproduct", { headers: this.headers_object }).subscribe(res => {
-        resolve(res);
+        this.decrypthash(res).then(async result => {
+          resolve(result);
+        })
       }, err => {
         resolve(err);
       })
@@ -133,7 +147,7 @@ export class ApiService {
   allproducts_withoutjwt() {
     return new Promise((resolve, reject) => {
       this.http.get(this.baseurl + "/allproduct_withoutauth").subscribe(res => {
-        this.decrypthash(res).then(async result => {          
+        this.decrypthash(res).then(async result => {
           resolve(result);
         })
       }, err => {
